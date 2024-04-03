@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriweather Wizard</title>
+</head>
+<body>
+    <h1>Agriweather Wizard</h1>
+    <form action="/predict" method="post">
+        <label for="district">District:</label>
+        <input type="text" id="district" name="district" required><br><br>
+        
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" required><br><br>
+        
+        <label for="quarter">Quarter:</label>
+        <input type="text" id="quarter" name="quarter" required><br><br>
+        
+        <label for="rainfall">Rainfall:</label>
+        <input type="text" id="rainfall" name="rainfall" required><br><br>
+        
+        <label for="temperature">Temperature:</label>
+        <input type="text" id="temperature" name="temperature" required><br><br>
+        
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>

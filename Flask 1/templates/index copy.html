@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriweather Wizard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agriweather Wizard</h1>
+        <form action="/predict" method="post">
+            <label for="district">District:</label>
+            <input type="text" id="district" name="district" placeholder="Enter district name" required>
+            <label for="year">Year:</label>
+            <input type="text" id="year" name="year" placeholder="Enter year" required>
+            <label for="quarter">Quarter:</label>
+            <input type="text" id="quarter" name="quarter" placeholder="Enter quarter" required>
+            <label for="month">Month:</label>
+            <input type="text" id="month" name="month" placeholder="Enter month" required>
+            <label for="day_of_year">Day of Year:</label>
+            <input type="text" id="day_of_year" name="day_of_year" placeholder="Enter day of year" required>
+            <label for="day_of_month">Day of Month:</label>
+            <input type="text" id="day_of_month" name="day_of_month" placeholder="Enter day of month" required>
+            <label for="day_of_week">Day of Week:</label>
+            <input type="text" id="day_of_week" name="day_of_week" placeholder="Enter day of week" required>
+            <label for="week_of_year">Week of Year:</label>
+            <input type="text" id="week_of_year" name="week_of_year" placeholder="Enter week of year" required>
+            <label for="ndvi">NDVI:</label>
+            <input type="text" id="ndvi" name="ndvi" placeholder="Enter NDVI" required>
+            <label for="rainfall">Rainfall:</label>
+            <input type="text" id="rainfall" name="rainfall" placeholder="Enter rainfall" required>
+            <label for="temperature">Temperature:</label>
+            <input type="text" id="temperature" name="temperature" placeholder="Enter temperature" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if predictions %}
+        <div class="result">
+            <h2>Predicted Rice Yield:</h2>
+            <p>{{ predictions }} kg/ha</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Comparison</title>
+    <!-- Add Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+              font-family: Arial, sans-serif;
+              background: linear-gradient(to bottom right, #29db79, #059836); /* Green gradient */
+              margin: 0;
+              padding: 0;
+        }
+
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #008000;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Model Comparison</h1>
+        <div class="chart-container">
+            <canvas id="rmse-chart" width="800" height="400"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="r2-chart" width="800" height="400"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        var models = {{ models | tojson }};
+        var valRMSE = {{ val_rmse | tojson }};
+        var testRMSE = {{ test_rmse | tojson }};
+        var valR2 = {{ val_r2 | tojson }};
+        var testR2 = {{ test_r2 | tojson }};
+
+        // RMSE Chart
+        var rmseCtx = document.getElementById('rmse-chart').getContext('2d');
+        var rmseChart = new Chart(rmseCtx, {
+            type: 'bar',
+            data: {
+                labels: models,
+                datasets: [{
+                    label: 'Validation RMSE',
+                    data: valRMSE,
+                    backgroundColor: 'rgba(0, 128, 0, 0.5)', // Dark green
+                    borderColor: 'rgba(0, 128, 0, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Test RMSE',
+                    data: testRMSE,
+                    backgroundColor: 'rgba(144, 238, 144, 0.5)', // Light green
+                    borderColor: 'rgba(144, 238, 144, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        // R2 Chart
+        var r2Ctx = document.getElementById('r2-chart').getContext('2d');
+        var r2Chart = new Chart(r2Ctx, {
+            type: 'line',
+            data: {
+                labels: models,
+                datasets: [{
+                    label: 'Validation R^2',
+                    data: valR2,
+                    backgroundColor: 'transparent',
+                    borderColor: 'rgba(0, 128, 0, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(0, 128, 0, 1)',
+                    pointRadius: 5
+                },
+                {
+                    label: 'Test R^2',
+                    data: testR2,
+                    backgroundColor: 'transparent',
+                    borderColor: 'rgba(144, 238, 144, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(144, 238, 144, 1)',
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
