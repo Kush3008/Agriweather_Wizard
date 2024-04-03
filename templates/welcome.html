@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Model Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #29db79, #059836); /* Green gradient */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #008000;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #008000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #059836;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Model Comparison</h1>
+        <p>This web application allows you to compare the performance of different machine learning models for predicting rice yield based on various agricultural parameters.</p>
+        <p>The project aims to provide insights into the effectiveness of different modeling techniques in agricultural yield prediction, helping farmers and agricultural experts make informed decisions.</p>
+        <p>Developed by:</p>
+        <ul>
+            <li>Kushagra Agarwal - Reg. No: RA2011003011024</li>
+            <li>Modhurai Mitra - Reg. No: RA2011003011016</li>
+        </ul>
+        <a href="{{ url_for('model_comparison') }}" class="btn">View Model Comparison</a>
+    </div>
+</body>
+</html>
